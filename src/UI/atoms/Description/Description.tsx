@@ -1,11 +1,11 @@
 type DescriptionProps = {
   label: string;
-  content: string;
+  content: string | number;
 };
 
 const Description: React.FC<DescriptionProps> = ({ label, content }) => (
   <p>
-    <span>{label}</span>: <span>{content}</span>
+    <b>{label}</b>: <span>{content}</span>
   </p>
 );
 

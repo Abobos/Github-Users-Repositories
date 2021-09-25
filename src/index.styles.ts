@@ -25,5 +25,6 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
+  background-color: whitesmoke;
 }
 `;

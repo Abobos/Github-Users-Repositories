@@ -1,13 +1,10 @@
+import { objectLiteral } from "interfaces/dataItem";
 import { useCallback, useReducer } from "react";
 
 const initialState = {
   error: "",
   loading: false,
   data: [],
-};
-
-type objectLiteral = {
-  [propsName: string]: any;
 };
 
 type reducerState = {

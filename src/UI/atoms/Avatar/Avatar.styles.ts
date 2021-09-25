@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const AvatarImg = styled.div`
-  width: 250px;
+  width: 80px;
   height: 80px;
-  overflow: hidden;
+  border-radius: 50%;
 
+  overflow: hidden;
   img {
     display: block;
+    max-width: 100%;
   }
 `;

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export const StyledCard = styled.div`
   background-color: white;
 
-  border-bottom: 1px solid #272b36;
-  padding: 1rem;
+  border: 1px solid #272b36;
+  padding: 3rem 3rem;
   flex-basis: 80%;
   margin-top: 2rem;
 
@@ -14,7 +14,7 @@ export const StyledCard = styled.div`
   }
 
   @media screen and (min-width: 1200px) {
-    flex-basis: 30%;
+    flex-basis: 28%;
   }
 `;
 
@@ -25,6 +25,6 @@ export const StyledLink = styled(Link)`
   display: inline-block;
   color: white;
   border-radius: 6px;
-  padding: 0.5rem;
+  padding: 0.9rem;
   margin-top: 2rem;
 `;
