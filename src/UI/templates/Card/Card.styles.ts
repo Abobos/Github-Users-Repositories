@@ -1,3 +1,30 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const CardDisplay = styled.div``;
+export const StyledCard = styled.div`
+  background-color: white;
+
+  border-bottom: 1px solid #272b36;
+  padding: 1rem;
+  flex-basis: 80%;
+  margin-top: 2rem;
+
+  & p {
+    margin-top: 2rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex-basis: 30%;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  appearance: none;
+  text-decoration: none;
+  background-color: #0e1117;
+  display: inline-block;
+  color: white;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-top: 2rem;
+`;

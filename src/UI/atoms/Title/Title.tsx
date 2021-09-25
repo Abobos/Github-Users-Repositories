@@ -1,3 +1,7 @@
-const Title: React.FC<{}> = () => <h1>GitHub Repository Search</h1>;
+import { StyledTitle } from "./Title.styles";
+
+const Title: React.FC<{ children: string }> = ({ children }) => (
+  <StyledTitle>{children}</StyledTitle>
+);
 
 export default Title;

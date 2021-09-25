@@ -1,3 +1,5 @@
 import styled from "styled-components";
 
-export const Label = styled.h3``;
+export const StyledTitle = styled.h1`
+  text-align: center;
+`;

@@ -1,3 +1,5 @@
+import { InputField } from "./Input.styles";
+
 type InputProps = {
   content: string;
   placeholder: string;
@@ -9,9 +11,8 @@ const Input: React.FC<InputProps> = ({
   content,
   onChangeFunction,
 }) => {
-  console.log(onChangeFunction);
   return (
-    <input
+    <InputField
       placeholder={placeholder}
       value={content}
       onChange={onChangeFunction}

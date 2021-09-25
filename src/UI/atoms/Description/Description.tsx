@@ -4,9 +4,9 @@ type DescriptionProps = {
 };
 
 const Description: React.FC<DescriptionProps> = ({ label, content }) => (
-  <>
-    <span>{label}</span> <span>{content}</span>
-  </>
+  <p>
+    <span>{label}</span>: <span>{content}</span>
+  </p>
 );
 
 export default Description;
