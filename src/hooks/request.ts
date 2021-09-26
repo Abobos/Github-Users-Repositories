@@ -38,7 +38,7 @@ function useRequest() {
   const { error, data, loading } = state;
 
   const makeRequest = useCallback(
-    async (url: string) => {
+    async (url: string, type = "") => {
       dispatch({ type: "loading" });
 
       try {
@@ -46,7 +46,11 @@ function useRequest() {
 
         console.log({ response });
 
-        dispatch({ type: "data", payload: response.items });
+        if (type === "contributors") {
+          dispatch({ type: "data", payload: response });
+        } else {
+          dispatch({ type: "data", payload: response.items });
+        }
       } catch (err: any) {
         dispatch({ type: "error", error: err.message });
 

@@ -13,7 +13,7 @@ type contextProps = {
   error: string;
   loading: boolean;
   data: Array<objectLiteral>;
-  makeRequest: (url: string) => void;
+  makeRequest: (url: string, type?: string) => void;
 };
 
 const dataContext = createContext<contextProps>(state);
