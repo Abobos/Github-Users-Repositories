@@ -1,4 +1,4 @@
-import { objectLiteral } from "interfaces/dataItem";
+import { Item, ItemII } from "interfaces/dataItem";
 import { useCallback, useReducer } from "react";
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 type reducerState = {
   error: string;
   loading: boolean;
-  data: Array<objectLiteral>;
+  data: Array<Item> | Array<ItemII>;
 };
 
 type actionType = {
@@ -44,8 +44,6 @@ function useRequest() {
       try {
         const response = await (await fetch(url)).json();
 
-        console.log({ response });
-
         if (type === "contributors") {
           dispatch({ type: "data", payload: response });
         } else {
@@ -53,8 +51,6 @@ function useRequest() {
         }
       } catch (err: any) {
         dispatch({ type: "error", error: err.message });
-
-        console.log({ err });
       }
     },
     [dispatch]

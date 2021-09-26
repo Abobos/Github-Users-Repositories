@@ -1,6 +1,6 @@
 import { StyledTitle } from "./Title.styles";
 
-const Title: React.FC<{ children: string }> = ({ children }) => (
+const Title: React.FC<{ children: any }> = ({ children }) => (
   <StyledTitle>{children}</StyledTitle>
 );
 

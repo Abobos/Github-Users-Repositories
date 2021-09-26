@@ -7,6 +7,7 @@ import Title from "UI/atoms/Title/Title";
 import Search from "UI/molecules/Search/Search";
 import Card from "UI/templates/Card/Card";
 import { CardDisplayWrapper } from "./Home.styles";
+import NotFound from "UI/templates/NotFound/NotFound";
 
 const Home: React.FC<{}> = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -40,9 +41,14 @@ const Home: React.FC<{}> = () => {
 
   const attributedData = loading ? Array(30).fill(null) : data;
 
-  const cardDisplay = attributedData.map((item: Item, index: number) => (
-    <Card key={index} datum={item} state={loading} />
-  ));
+  const cardDisplay =
+    Array.isArray(attributedData) &&
+    attributedData.length > 0 &&
+    attributedData.map((item: Item, index: number) => (
+      <Card key={index} datum={item} state={loading} />
+    ));
+
+  const renderCondition = attributedData.length > 0;
 
   return (
     <>
@@ -53,10 +59,20 @@ const Home: React.FC<{}> = () => {
           loading={loading}
         />
       </form>
-      <Title>
-        {justMounted.current ? "Popular Repositories" : "Searched Repositories"}
-      </Title>
-      <CardDisplayWrapper>{cardDisplay}</CardDisplayWrapper>
+      {renderCondition ? (
+        <>
+          <Title>
+            {justMounted.current
+              ? "Popular Repositories"
+              : "Searched Repositories"}
+          </Title>
+          <CardDisplayWrapper>{cardDisplay}</CardDisplayWrapper>{" "}
+        </>
+      ) : (
+        <NotFound
+          message={`${error ? "An error occured" : "No Result Found"}`}
+        />
+      )}
     </>
   );
 };

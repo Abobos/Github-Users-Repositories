@@ -9,10 +9,10 @@ export const GlobalStyle = createGlobalStyle`
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
+  font-size: 70%;
 
   @media screen and (min-width: 900px) {
-    font-size: 80%;
+    font-size: 90%;
   }
 }
 

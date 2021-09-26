@@ -1,40 +1,53 @@
 import useDataContext from "hooks/useDataContext";
-import { Item, ItemII } from "interfaces/dataItem";
+import { ItemII } from "interfaces/dataItem";
 import React, { useEffect } from "react";
 import Title from "UI/atoms/Title/Title";
 import { CardII } from "UI/templates/Card/Card";
 import { CardDisplayWrapper } from "../Home/Home.styles";
 
-const Contributors: React.FC<{}> = (props: any) => {
-  const { data, error, loading, makeRequest } = useDataContext();
+import Skeleton from "react-skeleton-loading";
+import NotFound from "UI/templates/NotFound/NotFound";
 
-  let datum = data.find(
-    (data: any) => data.owner?.id === +props.match.params.id
-  );
+const Contributors: React.FC<{}> = (props: any) => {
+  let { data, error, loading, makeRequest } = useDataContext();
+
+  const repositoryFullName = props.location.pathname.slice(14);
 
   useEffect(() => {
-    if (datum) {
+    if (repositoryFullName) {
       makeRequest(
-        `https://api.github.com/repos/${datum.full_name}/contributors`,
+        `https://api.github.com/repos/${repositoryFullName}/contributors`,
         "contributors"
       );
     }
-  }, [makeRequest, datum]);
+  }, [makeRequest, repositoryFullName]);
 
-  console.log({ data });
+  const attributedData = loading ? Array(6).fill(null) : data;
 
-  const attributedData = loading ? Array(20).fill(null) : data;
+  const cardDisplay =
+    Array.isArray(attributedData) &&
+    attributedData.length > 0 &&
+    attributedData.map((item: ItemII, index: number) => (
+      <CardII key={index} datum={item} state={loading} />
+    ));
 
-  const cardDisplay = attributedData.map((item: ItemII, index: number) => (
-    <CardII key={index} datum={item} state={loading} />
-  ));
+  const renderCondition = attributedData.length > 0;
 
   return (
     <>
-      <Title>
-        {datum ? `${datum.full_name} Contributors` : "Retrieving Contributors"}
-      </Title>
-      <CardDisplayWrapper>{cardDisplay}</CardDisplayWrapper>
+      {repositoryFullName ? (
+        <Title>{`${repositoryFullName} Contributors`} </Title>
+      ) : (
+        <Skeleton width={200} height={100} />
+      )}
+
+      {renderCondition ? (
+        <CardDisplayWrapper>{cardDisplay}</CardDisplayWrapper>
+      ) : (
+        <NotFound
+          message={`${error ? "An error occured" : "No Result Found"}`}
+        />
+      )}
     </>
   );
 };

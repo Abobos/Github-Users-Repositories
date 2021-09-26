@@ -50,7 +50,7 @@ const Card: React.FC<{ datum: Item; state: boolean }> = ({ datum, state }) => (
     )}
 
     {!state ? (
-      <StyledLink to={`contributors/${datum.owner?.id}`}>
+      <StyledLink to={`contributors/${datum.full_name}`}>
         View Contributors
       </StyledLink>
     ) : (

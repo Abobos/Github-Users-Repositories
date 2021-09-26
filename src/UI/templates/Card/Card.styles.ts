@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 export const StyledCard = styled.div`
   background-color: white;
-
-  border: 1px solid #272b36;
   padding: 3rem 3rem;
   flex-basis: 80%;
   margin-top: 2rem;
